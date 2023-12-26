@@ -1,0 +1,140 @@
+jab bhi aap kisi ejs page ko dekhege waha par aapko kisi prakaar ka koi information
+dena hai, wo kehlata hai flash messages, they are more like good looking alerts,
+warning and descriptions
+
+_________________________________  Flash Messages  ________________________________
+> install connect-flash
+> make sure you put connect flash in a app.use function
+> kisi bhi route mein app ko flash create karna hai
+> kisi bhi doosre route par app use chalane ka try karein
+
+AAP CONNECT FLASH KO USE NAHI KR SKTE BINA EXPRESS SESSION KE
+
+hum log chahte hai ki jab ham kisi route par jaaye jaise ki /failed us route par ek flash
+message bane aur wo flash message hum logo ko / route par dikhe ejs mein
+
+flash message ka matlab server ke kisi route mein koi data banana and us data ko doosre
+route par paana
+
+  // agar login hojaaye to login page ke baad profile page dikhaado
+  // agar naa ho to fir, mujhe is route se kisi aur route lejao jaise
+  // ki /error and waha par dikhao failed
+  
+  // flash message aapko ye allow krte hai ki aap is route mein bane
+  // huye data ko doosre route mein use kr sko
+
+
+  ----> How can I perform a case-insensitive search in Mongoose?
+  > install moongoose
+  > npm i mongoose
+  > mongoose ko setup karo
+
+
+_________________________   RegExp   __________________________
+
+// if you search for a name and the name is written in small letters but on searching time you write the name of first letter in capital
+// or any other letters in capital you want the name should be shown to you if you write the name of first letter in capital letter then use RegExp.
+  >   let regex = new RegExp(search, flags);         // in search you need to write the name of a person "Asim" and in flags write "i"
+// write it like this
+let regex = new RegExp("Asim", "i");   // it will give you the all names which are similar to asim such as "asima", "asimi", "asimia", "asimu"
+// but when you write it like this it will only give you the exact name asim  "^asim$" if there are some other names such as asima asimu it'll not show them
+let user = await userModel.find({name: regex});
+res.send(user);
+
+
+          ^ - starting should be like this
+
+          ^hello$
+
+          $ - ending should be like this
+
+// if you write it like this then it will only give you the exact name
+
+
+---->   How do I find documents where an array field contains all of a set of values?
+
+Whenever you want to find a value from an Array in categories so first of all you need to write the categories: then write {$all: ["name"]}
+Example:
+      router.get("/find", async function(req, res) {
+  let user = await userModel.find({categories: {$all: ["fashion"]}});
+  res.send(user);
+});
+
+Then it will show you those all users whose categories have fashion.
+
+
+---->   How can I search for documents with a specific date range in Mongoose?
+
+if you want to search for documents with a specific data range in mongoose so you can search it by using this line of code let user = await userModel.find
+({datecreated: {$gte: date1, $lte: date2}});
+$gte it means start the date from date one and $lte means end searcing in date two
+
+router.get("/find", async function(req, res) {
+  var date1 = new Date("2023-12-12");
+  var date2 = new Date("2023-12-13");
+  let user = await userModel.find({datecreated: {$gte: date1, $lte: date2}})
+  res.send(user);
+});
+
+
+---->  How can I filter documents based on the existence of a field in Mongoose?
+If you want to find those documents which exists it doesn't matter if its empty but it exists it will show that document we can filter or find it by using 
+this line of code:     let user = await userModel.find({categories: {$exists: true}})
+Example:
+router.get("/find", async function(req, res) {
+  let user = await userModel.find({categories: {$exists: true}})
+  res.send(user);
+})
+
+
+---->   How can I filter documents based on a specific field's length in Mongoose?
+
+// ! $gte maeans >=  and $lte means <=
+
+router.get("/find", async function(req, res) {
+  let user = await userModel.find({
+    $expr: {
+      $and: [
+        {$gte: [{$strLenCP: '$nickname'}, 0]},
+        {$lte: [{$strLenCP: "$nickname"}, 8]}
+      ]
+    }
+  });
+  res.send(user);
+});
+
+
+_____________________________   Authentication and Authorization   _______________________________
+>> install these packages:
+    npm i passport passport-local passport-local-mongoose mongoose express-session
+
+write app.js code first in app.js file and write it after view engine and before logger
+
+setup users.js then properly
+
+in index.js try register first and then other codes as well
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
